@@ -5,7 +5,7 @@ tasks:
   - name: Initial setup
     init: |
       # Commands to run only on the first start
-      if [ ! -f ".gitpod-setup-done" ]; then
+      if [ ! -d "pipeline" ]; then
         echo "Running first-time setup commands"
 
         sudo apt-get update
@@ -22,8 +22,6 @@ tasks:
         git clone https://github.com/AdamPrzychodniPrivate/notebook-templates.git
         cd ..
 
-        # Create a flag file
-        touch .gitpod-setup-done
       fi
     command: |
       # Commands to run every time the workspace starts
