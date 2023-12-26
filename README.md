@@ -37,6 +37,15 @@ Data from the paper [here](http://barrett.dyson.cornell.edu/files/research/data.
 ## Future Directions
 (Outline any potential future developments or extensions of this project. How could this work be scaled, or what other areas could it potentially impact?)
 
+## Tech stack
+Zotero + Ellicit - literature review 
+Obsidian - notes
+Eraser - graphs 
+Github - repo
+Gitpod - cloud dev env
+
+Linux - Python - Kedro - Docker etc 
+
 ## Contributing
 (Provide guidelines on how others can contribute to your project. This may include instructions for submitting issues, pull requests, and contact information for direct communication.)
 
