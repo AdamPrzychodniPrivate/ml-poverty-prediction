@@ -11,6 +11,16 @@ tasks:
       source venv/bin/activate
       pip install --upgrade pip
       pip install kedro
+
+      if [ -d "pipeline" ]; then
+        echo "Directory 'pipeline' exists. Changing directory to 'pipeline'."
+        cd pipeline/
+      else
+        echo "Directory 'pipeline' does not exist. Creating a new Kedro project."
+        kedro new --starter=spaceflights-pandas-viz --name=pipeline
+        cd pipeline/
+      fi
+
       kedro new --starter=spaceflights-pandas-viz --name=pipeline
       cd pipeline/
       pip install -r requirements.txt
