@@ -13,8 +13,6 @@ image: gitpod/workspace-python-3.11:latest
 #       pip install kedro
 #       kedro new --starter=spaceflights-pandas-viz --name=pipeline
 #       cd pipeline/
-#       kedro new --starter=spaceflights-pandas-viz --name=pipeline
-#       cd pipeline/
 #       pip install -r requirements.txt
 #       pip install pyarrow fastparquet openpyxl
 #       cd notebooks/
