@@ -1,33 +1,57 @@
 # Using this image because kedro works currently with python 3.11
 image: gitpod/workspace-python-3.11:latest
 
-tasks:
-  - name: Setup kedro pipeline template, .venv and install dependencies
-    before: 
-      sudo apt-get update
-    command: |
-      sudo apt-get install tree
-      virtualenv venv
-      source venv/bin/activate
-      pip install --upgrade pip
-      pip install kedro
+# tasks:
+#   - name: Setup kedro pipeline template, .venv and install dependencies
+#     before: 
+#       sudo apt-get update
+#     command: |
+#       sudo apt-get install tree
+#       virtualenv venv
+#       source venv/bin/activate
+#       pip install --upgrade pip
+#       pip install kedro
+#       kedro new --starter=spaceflights-pandas-viz --name=pipeline
+#       cd pipeline/
+#       kedro new --starter=spaceflights-pandas-viz --name=pipeline
+#       cd pipeline/
+#       pip install -r requirements.txt
+#       pip install pyarrow fastparquet openpyxl
+#       cd notebooks/
+#       git clone https://github.com/AdamPrzychodniPrivate/notebook-templates.git
+#       cd ..
 
-      if [ -d "pipeline" ]; then
-        echo "Directory 'pipeline' exists. Changing directory to 'pipeline'."
-        cd pipeline/
-      else
-        echo "Directory 'pipeline' does not exist. Creating a new Kedro project."
+
+tasks:
+  - name: Initial setup
+    init: |
+      # Commands to run only on the first start
+      if [ ! -f ".gitpod-setup-done" ]; then
+        echo "Running first-time setup commands"
+
+        sudo apt-get install tree
+        virtualenv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install kedro
         kedro new --starter=spaceflights-pandas-viz --name=pipeline
         cd pipeline/
-      fi
+        kedro new --starter=spaceflights-pandas-viz --name=pipeline
+        cd pipeline/
+        pip install -r requirements.txt
+        pip install pyarrow fastparquet openpyxl
+        cd notebooks/
+        git clone https://github.com/AdamPrzychodniPrivate/notebook-templates.git
+        cd ..
 
-      kedro new --starter=spaceflights-pandas-viz --name=pipeline
-      cd pipeline/
-      pip install -r requirements.txt
-      pip install pyarrow fastparquet openpyxl
-      cd notebooks/
-      git clone https://github.com/AdamPrzychodniPrivate/notebook-templates.git
-      cd ..
+        # Create a flag file
+        touch .gitpod-setup-done
+      fi
+    command: |
+      # Commands to run every time the workspace starts
+      echo "Running regular startup commands"
+      # Put your regular startup commands here
+
 
 ports:
  - port: 8888  # Default Jupyter Notebook port
