@@ -8,8 +8,6 @@ tasks:
       if [ ! -d "pipeline" ]; then
         echo "Running first-time setup commands"
 
-        sudo apt-get update
-        sudo apt-get install tree
         virtualenv venv
         source venv/bin/activate
         pip install --upgrade pip
@@ -21,6 +19,7 @@ tasks:
         cd notebooks/
         git clone https://github.com/AdamPrzychodniPrivate/notebook-templates.git
         cd ..
+        deactivate
 
       fi
     command: |
