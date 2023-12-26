@@ -75,7 +75,9 @@ Linux - Python - Kedro - Docker etc
 
 kedro run
 
-kedro viz
+kedro viz run
+
+kedro jupyter lab --ServerApp.allow_remote_access=True
 
 ## Run pipeline in Docker image
 
