@@ -1,119 +1,121 @@
 variables:
+# Conclusion_2 - Features with more than 40% missing data are dropped
   features:
-    - year
-    - URBAN_RURA
-    - country
-    - alt
-    - chrps
-    - deathcount
-    - latnum
-    - longnum
-    - lst
-    - marketm0
-    - marketm1
-    - marketm2
-    - marketm3
-    - marketm4
-    - marketm5
-    - marketm6
-    - marketm7
-    - marketm8
-    - marketm9
-    - marketm10
-    - marketm11
-    - marketm12
-    - marketm13
-    - marketm14
-    - marketm15
-    - marketm16
-    - marketm17
-    - marketm18
-    - marketm19
-    - marketm20
-    - marketm21
-    - marketm22
-    - marketm23
-    - marketm24
-    - marketm25
-    - marketm26
-    - marketm27
-    - marketm28
-    - marketm29
-    - marketm30
-    - marketm31
-    - marketm32
-    - marketm33
-    - marketm34
-    - marketm35
-    - marketm36
-    - marketm37
-    - marketm38
-    - marketm39
-    - marketm40
-    - marketm41
-    - marketm42
-    - marketm43
-    - marketm44
-    - marketm45
-    - marketm46
-    - marketm47
-    - markets0
-    - markets1
-    - markets2
-    - markets3
-    - markets4
-    - markets5
-    - markets6
-    - markets7
-    - markets8
-    - markets9
-    - markets10
-    - markets11
-    - markets12
-    - markets13
-    - markets14
-    - markets15
-    - markets16
-    - markets17
-    - markets18
-    - markets19
-    - markets20
-    - markets21
-    - markets22
-    - markets23
-    - markets24
-    - markets25
-    - markets26
-    - markets27
-    - markets28
-    - markets29
-    - markets30
-    - markets31
-    - markets32
-    - markets33
-    - markets34
-    - markets35
-    - markets36
-    - markets37
-    - markets38
-    - markets39
-    - markets40
-    - markets41
-    - markets42
-    - markets43
-    - markets44
-    - markets45
-    - markets46
-    - markets47
-    - numevents
-    - pasture
-    - sif
-    - slope
-    - tree
-    - tt00_500k
+#    - Unnamed: 0 # Conclusion_1 from EDA - The Unnamed: 0 column is just an index and we don't need that
+    - year # 0% of data is missing
+    - URBAN_RURA # 0% of data is missing
+    - country # 0% of data is missing
+    - alt # 0% of data is missing
+    - chrps # 1.46% of data is missing
+    - deathcount # 0% of data is missing
+    - latnum # 0% of data is missing
+    - longnum # 0% of data is missing
+    - lst # 4.04% of data is missing
+    - marketm0 # 31% of data is missing
+    - marketm1 # 39% of data is missing
+    - marketm2 # 31% of data is missing
+    - marketm3 # 28% of data is missing
+    - marketm4 # 50% of data is missing
+    - marketm5 # 45% of data is missing
+#    - marketm6 # Dropped because of 64% of data is missing
+#    - marketm7 # Dropped because of 53% of data is missing
+#    - marketm8 # Dropped because of 51% of data is missing
+#    - marketm9 # Dropped because of 58% of data is missing
+    - marketm10 # 74% of data is missing
+#    - marketm11 # Dropped because of 87% of data is missing
+    - marketm12 # 79% of data is missing
+    - marketm13 # 71% of data is missing
+#    - marketm14 # Dropped because of 92% of data is missing
+#    - marketm15 # Dropped because of 74% of data is missing
+#    - marketm16 # Dropped because of 75% of data is missing
+#    - marketm17 # Dropped because of 73% of data is missing
+#    - marketm18 # Dropped because of 75% of data is missing
+#    - marketm19 # Dropped because of 72% of data is missing
+#    - marketm20 # Dropped because of 75% of data is missing
+#    - marketm21 # Dropped because of 81% of data is missing
+#    - marketm22 # Dropped because of 77% of data is missing
+#    - marketm23 # Dropped because of 76% of data is missing
+#    - marketm24 # Dropped because of 90% of data is missing
+#    - marketm25 # Dropped because of 75% of data is missing
+#    - marketm26 # Dropped because of 79% of data is missing
+#    - marketm27 # Dropped because of 88% of data is missing
+#    - marketm28 # Dropped because of 80% of data is missing
+#    - marketm29 # Dropped because of 94% of data is missing
+#    - marketm30 # Dropped because of 97% of data is missing
+#    - marketm31 # Dropped because of 94% of data is missing
+#    - marketm32 # Dropped because of 88% of data is missing
+#    - marketm33 # Dropped because of 80% of data is missing
+#    - marketm34 # Dropped because of 88% of data is missing
+#    - marketm35 # Dropped because of 91% of data is missing
+#    - marketm36 # Dropped because of 100% of data is missing
+#    - marketm37 # Dropped because of 94% of data is missing
+#    - marketm38 # Dropped because of 97% of data is missing
+#    - marketm39 # Dropped because of 94% of data is missing
+#    - marketm40 # Dropped because of 94% of data is missing
+#    - marketm41 # Dropped because of 94% of data is missing
+#    - marketm42 # Dropped because of 94% of data is missing
+#    - marketm43 # Dropped because of 94% of data is missing
+#    - marketm44 # Dropped because of 97% of data is missing
+#    - marketm45 # Dropped because of 94% of data is missing
+#    - marketm46 # Dropped because of 97% of data is missing
+#    - marketm47 # Dropped because of 94% of data is missing
+    - markets0 # 31% of data is missing
+    - markets1 # 39% of data is missing
+    - markets2 # 31% of data is missing
+    - markets3 # 28% of data is missing
+    - markets4 # 50% of data is missing
+    - markets5 # 45% of data is missing
+#    - markets6 # Dropped because of 64% of data is missing
+#    - markets7 # Dropped because of 53% of data is missing
+#    - markets8 # Dropped because of 51% of data is missing
+#    - markets9 # Dropped because of 58% of data is missing
+    - markets10 # 74% of data is missing
+#    - markets11 # Dropped because of 87% of data is missing
+    - markets12 # 79% of data is missing
+    - markets13 # 71% of data is missing
+#    - markets14 # Dropped because of 92% of data is missing
+#    - markets15 # Dropped because of 74% of data is missing
+#    - markets16 # Dropped because of 75% of data is missing
+#    - markets17 # Dropped because of 73% of data is missing
+#    - markets18 # Dropped because of 75% of data is missing
+#    - markets19 # Dropped because of 72% of data is missing
+#    - markets20 # Dropped because of 75% of data is missing
+#    - markets21 # Dropped because of 81% of data is missing
+#    - markets22 # Dropped because of 77% of data is missing
+#    - markets23 # Dropped because of 76% of data is missing
+#    - markets24 # Dropped because of 90% of data is missing
+#    - markets25 # Dropped because of 75% of data is missing
+#    - markets26 # Dropped because of 79% of data is missing
+#    - markets27 # Dropped because of 88% of data is missing
+#    - markets28 # Dropped because of 80% of data is missing
+#    - markets29 # Dropped because of 94% of data is missing
+#    - markets30 # Dropped because of 97% of data is missing
+#    - markets31 # Dropped because of 94% of data is missing
+#    - markets32 # Dropped because of 88% of data is missing
+#    - markets33 # Dropped because of 80% of data is missing
+#    - markets34 # Dropped because of 88% of data is missing
+#    - markets35 # Dropped because of 91% of data is missing
+#    - markets36 # Dropped because of 100% of data is missing
+#    - markets37 # Dropped because of 94% of data is missing
+#    - markets38 # Dropped because of 97% of data is missing
+#    - markets39 # Dropped because of 94% of data is missing
+#    - markets40 # Dropped because of 94% of data is missing
+#    - markets41 # Dropped because of 94% of data is missing
+#    - markets42 # Dropped because of 94% of data is missing
+#    - markets43 # Dropped because of 94% of data is missing
+#    - markets44 # Dropped because of 97% of data is missing
+#    - markets45 # Dropped because of 94% of data is missing
+#    - markets46 # Dropped because of 97% of data is missing
+#    - markets47 # Dropped because of 94% of data is missing
+    - numevents # 0% of data is missing
+    - pasture # 0% of data is missing
+    - sif # 1.60% of data is missing
+    - slope # 0% of data is missing
+    - tree # 0% of data is missing
+    - tt00_500k # 0% of data is missing
   targets:
-    - stunted
-    - wasted
-    - healthy
-    - poorest
-    - underweight_bmi
+    - stunted # 0% of data is missing
+    - wasted # 0% of data is missing
+    - healthy # 0% of data is missing
+    - poorest # 0% of data is missing
+    - underweight_bmi # 1.39% of data is missing
