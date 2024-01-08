@@ -1,6 +1,9 @@
 model_options_stunted:
   n_folds: 5
   random_state: 42
+  n_trees: 2000
+  max_depth: 4
+  max_features: 0.333
   features:
     - latnum 
     - longnum 
@@ -16,3 +19,91 @@ model_options_stunted:
     - tree 
     - tt00_500k 
   target: stunted
+
+model_options_wasted:
+  n_folds: 5
+  random_state: 42
+  n_trees: 2000
+  max_depth: 4
+  max_features: 0.333
+  features:
+    - latnum 
+    - longnum 
+    - URBAN_RURA 
+    - alt 
+    - chrps 
+    - deathcount 
+    - lst 
+    - numevents 
+    - pasture 
+    - sif 
+    - slope 
+    - tree 
+    - tt00_500k 
+  target: wasted
+
+model_options_healthy:
+  n_folds: 5
+  random_state: 42
+  n_trees: 2000
+  max_depth: 4
+  max_features: 0.333
+  features:
+    - latnum 
+    - longnum 
+    - URBAN_RURA 
+    - alt 
+    - chrps 
+    - deathcount 
+    - lst 
+    - numevents 
+    - pasture 
+    - sif 
+    - slope 
+    - tree 
+    - tt00_500k 
+  target: healthy
+
+model_options_poorest:
+  n_folds: 5
+  random_state: 42
+  n_trees: 2000
+  max_depth: 4
+  max_features: 0.333
+  features:
+    - latnum 
+    - longnum 
+    - URBAN_RURA 
+    - alt 
+    - chrps 
+    - deathcount 
+    - lst 
+    - numevents 
+    - pasture 
+    - sif 
+    - slope 
+    - tree 
+    - tt00_500k 
+  target: poorest
+
+model_options_underweight_bmi:
+  n_folds: 5
+  random_state: 42
+  n_trees: 2000
+  max_depth: 4
+  max_features: 0.333
+  features:
+    - latnum 
+    - longnum 
+    - URBAN_RURA 
+    - alt 
+    - chrps 
+    - deathcount 
+    - lst 
+    - numevents 
+    - pasture 
+    - sif 
+    - slope 
+    - tree 
+    - tt00_500k 
+  target: underweight_bmi
