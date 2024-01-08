@@ -4,8 +4,6 @@ model_options_stunted:
   features:
     - latnum 
     - longnum 
-    - year 
-    - country 
     - URBAN_RURA 
     - alt 
     - chrps 
