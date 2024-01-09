@@ -106,3 +106,7 @@ dummy_confusion_matrix:
 data:
   type: pandas.CSVDataset
   filepath: data/01_raw/data.csv
+
+model_input_table_research_paper:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/model_input_table_research_paper.pq
