@@ -113,8 +113,7 @@ def preprocess_raw_data(raw_data: pd.DataFrame, variables: Dict) -> pd.DataFrame
     Returns:
         pd.DataFrame: Preprocessed data, reflecting the necessary preprocessing steps applied to the raw data.
     """
-    print(variables)
     df = raw_data[variables]
-    preprocessed_df = drop_rows_with_missing_values(raw_data)
+    preprocessed_df = drop_rows_with_missing_values(df)
 
     return preprocessed_df

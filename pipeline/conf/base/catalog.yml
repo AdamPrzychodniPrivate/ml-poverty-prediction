@@ -110,3 +110,8 @@ data:
 model_input_table_research_paper:
   type: pandas.ParquetDataset
   filepath: data/03_primary/model_input_table_research_paper.pq
+
+cv_data_splits_stunted:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/cv_data_splits_stunted.pkl
+
