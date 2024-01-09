@@ -115,3 +115,7 @@ cv_data_splits_stunted:
   type: pickle.PickleDataset
   filepath: data/05_model_input/cv_data_splits_stunted.pkl
 
+independent_rf_models_stunted:
+  type: pickle.PickleDataset
+  filepath: data/06_models/independent_rf_models_stunted.pkl
+

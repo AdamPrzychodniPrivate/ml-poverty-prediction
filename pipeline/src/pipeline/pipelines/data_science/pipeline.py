@@ -1,6 +1,6 @@
 from kedro.pipeline import Pipeline, node, pipeline
 
-from .nodes import evaluate_model, split_data, train_model, generate_cv_splits
+from .nodes import evaluate_model, split_data, train_model, generate_cv_splits, train_models_on_cv_folds
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -29,6 +29,12 @@ def create_pipeline(**kwargs) -> Pipeline:
                 inputs=["model_input_table_research_paper", "params:model_options_stunted"],
                 outputs="cv_data_splits_stunted",
                 name="generate_cv_splits_node",
+            ),
+            node(
+                func=train_models_on_cv_folds,
+                inputs=["cv_data_splits_stunted", "params:model_options_stunted"],
+                outputs="independent_rf_models_stunted",
+                name="training_indpendent_rf_models_stunted_node",
             ),
         ]
     )

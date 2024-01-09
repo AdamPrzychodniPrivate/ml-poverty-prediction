@@ -88,3 +88,61 @@ def generate_cv_splits(data: pd.DataFrame, model_options: Dict) -> List[Tuple]:
         cv_data_splits.append((X_train, X_test, y_train, y_test))
 
     return cv_data_splits
+    
+
+from sklearn.ensemble import RandomForestRegressor as RF
+import pandas as pd
+from typing import Dict, List, Tuple
+
+def train_independent_rf(X_train: pd.DataFrame, y_train: pd.DataFrame, model_options: Dict) -> Dict[str, RF]:
+    """
+    Trains independent Random Forest models for each outcome.
+
+    Args:
+        X_train: Training data of independent features.
+        y_train: Training data for the target variables.
+        model_options: Dictionary containing 'n_trees', 'max_depth', and 'max_features'.
+
+    Returns:
+        Dictionary of trained Random Forest models for each outcome.
+    """
+    n_trees = model_options["n_trees"]
+    max_depth = model_options["max_depth"]
+    max_features = model_options["max_features"]
+
+    models = {}
+    for outcome in y_train.columns:
+        model = RF(n_estimators=n_trees, max_depth=max_depth, max_features=max_features)
+        model.fit(X_train, y_train[outcome])
+        models[outcome] = model
+    return models
+
+def train_models_on_cv_folds(cv_data_splits: List[Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]], model_options: Dict) -> Dict[str, Dict[str, RF]]:
+    """
+    Trains independent Random Forest models for each outcome on each fold of cross-validation splits.
+
+    Args:
+        cv_data_splits: List of tuples containing (X_train, X_test, y_train, y_test) for each fold.
+        model_options: Dictionary containing 'n_trees', 'max_depth', and 'max_features'.
+
+    Returns:
+        Dictionary of dictionaries containing trained Random Forest models for each outcome, for each fold.
+    """
+    num_folds = len(cv_data_splits)
+    print(f"Starting training of independent Random Forest models for {num_folds} folds...")
+
+    target_names = ", ".join(cv_data_splits[0][2].columns)
+    print(f"Training models for target: {target_names}")
+    
+    all_fold_models = {}
+    for fold_index, (X_train, _, y_train, _) in enumerate(cv_data_splits):
+        fold_key = f'fold_{fold_index + 1}'
+        print(f"Training model for {fold_key}")
+
+        fold_models = train_independent_rf(X_train, y_train, model_options)
+        all_fold_models[fold_key] = fold_models
+        print(f"Completed training model for {fold_key}")
+    
+    print("ok im done :)")
+    return all_fold_models
+
