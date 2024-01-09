@@ -1,26 +1,24 @@
 variables:
 # Conclusion_2 - Features with more than 20% missing data are dropped so every market variable
-  features:
-#    - Unnamed: 0 # Conclusion_1 from EDA - The Unnamed: 0 column is just an index and we don't need that
-    - latnum 
-    - longnum 
-    - year 
-    - country 
-    - URBAN_RURA 
-    - alt 
-    - chrps 
-    - deathcount 
-    - lst 
-#   - every market... variable was dropped because of high percentage of missing data 
-    - numevents 
-    - pasture 
-    - sif 
-    - slope 
-    - tree 
-    - tt00_500k 
-  targets:
-    - stunted 
-    - wasted 
-    - healthy 
-    - poorest 
-    - underweight_bmi 
+  # - Unnamed: 0 # Conclusion_1 from EDA - The Unnamed: 0 column is just an index and we don't need that
+  - latnum 
+  - longnum 
+  - year 
+  - country 
+  - URBAN_RURA 
+  - alt 
+  - chrps 
+  - deathcount 
+  - lst 
+  # - every market... variable was dropped because of high percentage of missing data 
+  - numevents 
+  - pasture 
+  - sif 
+  - slope 
+  - tree 
+  - tt00_500k 
+  - stunted 
+  - wasted 
+  - healthy 
+  - poorest 
+  - underweight_bmi 
