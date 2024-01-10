@@ -39,73 +39,14 @@
 # (transcoding), templating and a way to reuse arguments that are frequently repeated. See more here:
 # https://kedro.readthedocs.io/en/stable/data/data_catalog.html
 
-companies:
-  type: pandas.CSVDataset
-  filepath: data/01_raw/companies.csv
-
-reviews:
-  type: pandas.CSVDataset
-  filepath: data/01_raw/reviews.csv
-
-shuttles:
-  type: pandas.ExcelDataset
-  filepath: data/01_raw/shuttles.xlsx
-  load_args:
-    engine: openpyxl
-
-preprocessed_companies:
-  type: pandas.ParquetDataset
-  filepath: data/02_intermediate/preprocessed_companies.pq
-
-preprocessed_shuttles:
-  type: pandas.ParquetDataset
-  filepath: data/02_intermediate/preprocessed_shuttles.pq
-
-model_input_table:
-  type: pandas.ParquetDataset
-  filepath: data/03_primary/model_input_table.pq
-
-regressor:
-  type: pickle.PickleDataset
-  filepath: data/06_models/regressor.pickle
-  versioned: true
-
-metrics:
-  type: tracking.MetricsDataset
-  filepath: data/09_tracking/metrics.json
-
-companies_columns:
-  type: tracking.JSONDataset
-  filepath: data/09_tracking/companies_columns.json
-
-shuttle_passenger_capacity_plot_exp:
-  type: plotly.PlotlyDataset
-  filepath: data/08_reporting/shuttle_passenger_capacity_plot_exp.json
-  versioned: true
-  plotly_args:
-    type: bar
-    fig:
-      x: shuttle_type
-      y: passenger_capacity
-      orientation: h
-    layout:
-      xaxis_title: Shuttles
-      yaxis_title: Average passenger capacity
-      title: Shuttle Passenger capacity
-
-shuttle_passenger_capacity_plot_go:
-  type: plotly.JSONDataset
-  filepath: data/08_reporting/shuttle_passenger_capacity_plot_go.json
-  versioned: true
-
-dummy_confusion_matrix:
-  type: matplotlib.MatplotlibWriter
-  filepath: data/08_reporting/dummy_confusion_matrix.png
-  versioned: true
 
 data:
   type: pandas.CSVDataset
   filepath: data/01_raw/data.csv
+
+country_column:
+  type: tracking.JSONDataset
+  filepath: data/09_tracking/country_column.json
 
 model_input_table_research_paper:
   type: pandas.ParquetDataset
@@ -119,3 +60,59 @@ independent_rf_models_stunted:
   type: pickle.PickleDataset
   filepath: data/06_models/independent_rf_models_stunted.pkl
 
+metrics_stunted:
+  type: tracking.MetricsDataset
+  filepath: data/09_tracking/metrics_stunted.json
+
+cv_data_splits_wasted:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/cv_data_splits_wasted.pkl
+
+independent_rf_models_wasted:
+  type: pickle.PickleDataset
+  filepath: data/06_models/independent_rf_models_wasted.pkl
+
+metrics_wasted:
+  type: tracking.MetricsDataset
+  filepath: data/09_tracking/metrics_wasted.json
+
+cv_data_splits_healthy:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/cv_data_splits_healthy.pkl
+
+independent_rf_models_healthy:
+  type: pickle.PickleDataset
+  filepath: data/06_models/independent_rf_models_healthy.pkl
+
+metrics_healthy:
+  type: tracking.MetricsDataset
+  filepath: data/09_tracking/metrics_healthy.json
+
+cv_data_splits_poorest:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/cv_data_splits_poorest.pkl
+
+independent_rf_models_poorest:
+  type: pickle.PickleDataset
+  filepath: data/06_models/independent_rf_models_poorest.pkl
+
+metrics_poorest:
+  type: tracking.MetricsDataset
+  filepath: data/09_tracking/metrics_poorest.json
+
+cv_data_splits_underweight_bmi:
+  type: pickle.PickleDataset
+  filepath: data/05_model_input/cv_data_splits_underweight_bmi.pkl
+
+independent_rf_models_underweight_bmi:
+  type: pickle.PickleDataset
+  filepath: data/06_models/independent_rf_models_underweight_bmi.pkl
+
+metrics_underweight_bmi:
+  type: tracking.MetricsDataset
+  filepath: data/09_tracking/metrics_underweight_bmi.json
+
+dummy_confusion_matrix:
+  type: matplotlib.MatplotlibWriter
+  filepath: data/08_reporting/dummy_confusion_matrix.png
+  versioned: true

@@ -2,62 +2,11 @@ import logging
 from typing import Dict, Tuple, List
 
 import pandas as pd
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import max_error, mean_absolute_error, r2_score
-from sklearn.model_selection import train_test_split
+import numpy as np
 
 from sklearn.model_selection import KFold
-
-
-def split_data(data: pd.DataFrame, parameters: Dict) -> Tuple:
-    """Splits data into features and targets training and test sets.
-
-    Args:
-        data: Data containing features and target.
-        parameters: Parameters defined in parameters/data_science.yml.
-    Returns:
-        Split data.
-    """
-    X = data[parameters["features"]]
-    y = data["price"]
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=parameters["test_size"], random_state=parameters["random_state"]
-    )
-    return X_train, X_test, y_train, y_test
-
-
-def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> LinearRegression:
-    """Trains the linear regression model.
-
-    Args:
-        X_train: Training data of independent features.
-        y_train: Training data for price.
-
-    Returns:
-        Trained model.
-    """
-    regressor = LinearRegression()
-    regressor.fit(X_train, y_train)
-    return regressor
-
-
-def evaluate_model(
-    regressor: LinearRegression, X_test: pd.DataFrame, y_test: pd.Series
-) -> Dict[str, float]:
-    """Calculates and logs the coefficient of determination.
-
-    Args:
-        regressor: Trained model.
-        X_test: Testing data of independent features.
-        y_test: Testing data for price.
-    """
-    y_pred = regressor.predict(X_test)
-    score = r2_score(y_test, y_pred)
-    mae = mean_absolute_error(y_test, y_pred)
-    me = max_error(y_test, y_pred)
-    logger = logging.getLogger(__name__)
-    logger.info("Model has a coefficient R^2 of %.3f on test data.", score)
-    return {"r2_score": score, "mae": mae, "max_error": me}
+from sklearn.ensemble import RandomForestRegressor as RF
+from sklearn.metrics import r2_score, mean_squared_error
 
 
 def generate_cv_splits(data: pd.DataFrame, model_options: Dict) -> List[Tuple]:
@@ -117,6 +66,7 @@ def train_independent_rf(X_train: pd.DataFrame, y_train: pd.DataFrame, model_opt
         models[outcome] = model
     return models
 
+
 def train_models_on_cv_folds(cv_data_splits: List[Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]], model_options: Dict) -> Dict[str, Dict[str, RF]]:
     """
     Trains independent Random Forest models for each outcome on each fold of cross-validation splits.
@@ -146,3 +96,41 @@ def train_models_on_cv_folds(cv_data_splits: List[Tuple[pd.DataFrame, pd.DataFra
     print("ok im done :)")
     return all_fold_models
 
+
+def evaluate_model_performance(cv_data_splits: List[Tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]], 
+                               trained_models: Dict[str, Dict[str, RF]]) -> Dict[str, Dict[str, float]]:
+    """
+    Evaluates the performance of trained models on each fold of cross-validation splits.
+
+    Args:
+        cv_data_splits: List of tuples containing (X_train, X_test, y_train, y_test) for each fold.
+        trained_models: Dictionary of dictionaries containing trained models for each outcome, for each fold.
+
+    Returns:
+        A dictionary with evaluation metrics (R-squared and MSE) for each model on each fold.
+    """
+    performance_metrics = {}
+
+    for fold_index, (_, X_test, _, y_test) in enumerate(cv_data_splits):
+        fold_key = f'fold_{fold_index + 1}'
+        models = trained_models[fold_key]
+        fold_metrics = {}
+
+        # for outcome, model in models.items():
+        #     predictions = model.predict(X_test)
+        #     r2 = r2_score(y_test, predictions)
+        #     mse = mean_squared_error(y_test, predictions)
+        #     fold_metrics[outcome] = {'R2': r2, 'MSE': mse}
+
+        # performance_metrics[fold_key] = fold_metrics
+
+        for outcome, model in models.items():
+            predictions = model.predict(X_test)
+            r2 = r2_score(y_test[outcome], predictions)
+            mse = mean_squared_error(y_test[outcome], predictions)
+            
+            # Flatten the structure
+            performance_metrics[f'{fold_key}_{outcome}_R2'] = r2
+            performance_metrics[f'{fold_key}_{outcome}_MSE'] = mse
+
+    return performance_metrics
